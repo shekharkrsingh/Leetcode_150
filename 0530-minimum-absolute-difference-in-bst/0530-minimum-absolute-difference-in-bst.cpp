@@ -15,8 +15,8 @@ public:
     {
         if(root==NULL)
         return ;
-        minDif.push_back(root->val);
         BST(root->left, minDif);
+        minDif.push_back(root->val);
         BST(root->right, minDif);
         
     }
@@ -25,7 +25,7 @@ public:
     int getMinimumDifference(TreeNode* root) {
         vector<int> minDif;
         BST(root, minDif);
-        sort(minDif.begin(), minDif.end());
+        // sort(minDif.begin(), minDif.end());
         int n=minDif.size();
         int val=INT_MAX;
         for(int i=0;i<n-1;i++)
