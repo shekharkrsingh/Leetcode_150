@@ -1,28 +1,17 @@
 class Solution {
 public:
-
-int stairs(int n, vector<int> &dp)
-{
-    if(n<0)
-    {
-        return 0;
-    }
-    if(dp[n]!=-1)
-    {
-        return dp[n];
-    }
-    int first=stairs(n-1, dp);
-    int second=stairs(n-2, dp);
-    dp[n]=first+second;
-    return first+second;
-}
-
-
-
-
     int climbStairs(int n) {
-        vector<int> dp(n+1, -1);
-        dp[0]=1;
-        return stairs(n, dp);
+        int firstPre=1;
+        int secondPre=0;
+        int ans=0;
+        while(n!=0)
+        {
+            int ans=0;
+            ans=firstPre+secondPre;
+            secondPre=firstPre;
+            firstPre=ans;
+            n--;
+        }
+        return firstPre;
     }
 };
