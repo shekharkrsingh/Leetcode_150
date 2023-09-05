@@ -1,6 +1,3 @@
-#include <string>
-#include <vector>
-
 class Solution {
 public:
     string convert(string s, int numRows) {
@@ -8,16 +5,21 @@ public:
             return s;
         }
 
-        vector<string> rows(min(numRows, int(s.length())));
+        vector<string> rows(numRows);
         int currentRow = 0;
-        bool goingDown = false;
+        int direction = 1;  // 1 for moving down, -1 for moving up
 
         for (char c : s) {
             rows[currentRow] += c;
-            if (currentRow == 0 || currentRow == numRows - 1) {
-                goingDown = !goingDown;
+
+            // Change direction if at the top or bottom row
+            if (currentRow == 0) {
+                direction = 1;
+            } else if (currentRow == numRows - 1) {
+                direction = -1;
             }
-            currentRow += goingDown ? 1 : -1;
+
+            currentRow += direction;
         }
 
         string result;
